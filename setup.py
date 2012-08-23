@@ -1,10 +1,21 @@
-from distutils.core import setup
+from setuptools import setup, find_packages #your system should use distribute which is successor to setuptools 
+                                            # and distutils, http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-and-setuptools
 
+package = __import__('simplemenu')
 setup(name='django-simplemenu',
-      version='0.1.0',
-      url='http://github.com/alexvasi/django-simplemenu',
-      license='BSD',
-      description='Menu app for Django with ordering and ability to link menu item with model instance, view or URL.',
-      author='Alex Vasi',
-      author_email='eee@someuser.com',
-      packages=['simplemenu', 'simplemenu.templatetags'])
+    install_requires=['distribute'], # let's use the enhanced setuptools
+    version=package.get_version(),
+    url='http://github.com/danielsokolowski/django-simplemenu',
+    license='BSD',
+    description=package.__doc__.strip(),
+    author='Alex Vasi , Justin Steward , Daniel Sokolowski ',
+    author_email='unemelpmis-ognajd@danols.com',
+    include_package_data=True, # this will use MANIFEST.in during install where we specify all of our additional files
+    packages=find_packages(),
+    # Below is not needed as we are utilizing MANIFEST.in 
+    #package_data={'simplemenu': ['locale/en/LC_MESSAGES/*', 
+    #                             'locale/ru/LC_MESSAGES/*']
+    #              },
+    scripts=[],
+    requires=[],
+    )
